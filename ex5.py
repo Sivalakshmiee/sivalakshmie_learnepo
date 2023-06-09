@@ -21,50 +21,20 @@ except IOError as e:
 
 print (ex5_properties)
 
-batter = {
-        "id": "0004",
-		"type": "donut",
-		"name": "Old Fashioned",
-		"ppu": 0.55,
-		"batters":
-			{
-				"batter":
-					[
-						{ "id": "1001", "type": "Regular" },
-						{ "id": "1002", "type": "Chocolate" }
-					]
-			},
-           "topping":
-			[
-				{ "id": "5001", "type": "None" },
-				{ "id": "5002", "type": "Glazed" },
-				{ "id": "5003", "type": "Chocolate" },
-				{ "id": "5004", "type": "Maple" }
-			],
-            "id": "0005",
-		"type": "coffee",
-		"name": "Old Fashioned",
-		"ppu": 0.55,
-		"batters":
-			{
-				"batter":
-					[
-						{ "id": "1001", "type": "Regular" },
-						{ "id": "1002", "type": "Chocolate" }
-					]
-			},
-           "topping":
-			[
-				{ "id": "5001", "type": "None" },
-				{ "id": "5002", "type": "Glazed" },
-				{ "id": "5003", "type": "Chocolate" },
-				{ "id": "5004", "type": "Maple" }
-			]
+for i in ex5_properties:
+    
+    if i['name'] == 'Old Fashioned':
+        x=i['batters']['batter']
+        
+        max_id=0
+        for id in x:
+            cur_id = int(id["id"])
+            if cur_id > max_id:
+                max_id = cur_id
+        last_id=str(max_id + 1)
+        z={ "id": last_id, "type": "Coffee" }
+        x.append(z)
 
-	}
-
-with open(r'C:\Users\sival\Desktop\json\ex5.json', 'w') as f:
-
-    json.dump(batter, f)
-
+with open(r'C:\Users\sival\Desktop\json\ex5.json','w') as out:
+    json.dump(ex5_properties,out,indent=4)
 
